@@ -26,6 +26,20 @@ class Router
         self::addRoute($uri, $callback, 'DELETE');
     }
 
+    public static function api($uri, $controller)
+    {
+        $metodos = [
+            'get' => 'index',
+            'post' => 'criar',
+            'put' => 'atualizar',
+            'delete' => 'deletar'
+        ];
+
+        foreach ($metodos as $httpVerbo => $metodo) {
+            self::{$httpVerbo}($uri, "$controller@$metodo");
+        }
+    }
+
     public static function addRoute(string $uri, string|callable $callback, string $method = 'GET'): void
     {
         self::$routeCollection[] = [

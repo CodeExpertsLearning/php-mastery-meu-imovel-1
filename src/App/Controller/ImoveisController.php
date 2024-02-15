@@ -11,7 +11,7 @@ class ImoveisController
     {
     }
 
-    public function getRecurso(int $imovelId = null)
+    public function index(int $imovelId = null)
     {
         if ($imovelId) {
 
@@ -27,7 +27,7 @@ class ImoveisController
         return new JsonResponse($imoveis);
     }
 
-    public function postRecurso()
+    public function criar()
     {
         if ($_SERVER['CONTENT_TYPE'] == 'application/json') {
             $post = json_decode(file_get_contents('php://input'));
@@ -54,7 +54,7 @@ class ImoveisController
         return new JsonResponse($imovel);
     }
 
-    public function putRecurso(int $imovelId = null)
+    public function atualizar(int $imovelId = null)
     {
         if (!$imovelId) {
             return new JsonResponse([
@@ -85,7 +85,7 @@ class ImoveisController
         ]);
     }
 
-    public function deleteRecurso(int $imovelId = null)
+    public function deletar(int $imovelId = null)
     {
         if (!$imovelId) {
 

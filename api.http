@@ -1,10 +1,10 @@
-GET http://localhost:3000/imoveis/11
+GET http://localhost:3030/imoveis/13
 Content-Type: application/json
 
 {
     "cidade_id": "1",
     "estado_id": "1",
-    "titulo": "Imovel Novo Editado",
+    "titulo": "Imovel 13 Editado",
     "descricao": "Meu imovel via post",
     "conteudo": "Meu imovel via post",
     "slug": "meu-imovel-via-post",
