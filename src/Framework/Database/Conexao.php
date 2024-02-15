@@ -20,7 +20,7 @@ class Conexao
             );
 
             self::$conexao->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
-            self::$conexao->exec('SET NAME ' . DB_CHARSET . ' COLLATE ' . DB_COLLATE);
+            self::$conexao->exec('SET NAMES ' . DB_CHARSET . ' COLLATE ' . DB_COLLATE);
         }
 
         return self::$conexao;

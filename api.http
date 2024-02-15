@@ -1,0 +1,20 @@
+GET http://localhost:3000/imoveis/11
+Content-Type: application/json
+
+{
+    "cidade_id": "1",
+    "estado_id": "1",
+    "titulo": "Imovel Novo Editado",
+    "descricao": "Meu imovel via post",
+    "conteudo": "Meu imovel via post",
+    "slug": "meu-imovel-via-post",
+    "price": "1.99",
+    "imovel_area": "20",
+    "total_imovel_area": "20",
+    "banheiros": "2",
+    "quartos": "3"
+}
+
+###
+
+GET http://localhost:3030/imoveis/7

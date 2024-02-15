@@ -2,11 +2,14 @@
 
 namespace Code\App\Controller;
 
+use Code\Framework\Database\Database;
 
 class HomeController
 {
     public function index()
     {
-        return 'Estou na home do projeto...';
+        //Testar Inserir
+        $inserir = new Database('imoveis');
+        var_dump($inserir->buscar(2, 'titulo'));
     }
 }
