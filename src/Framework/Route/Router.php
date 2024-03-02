@@ -26,7 +26,7 @@ class Router
         self::addRoute($uri, $callback, 'DELETE');
     }
 
-    public static function api($uri, $controller)
+    public static function api(string $uri, string $controller, array $metodosCustom = [])
     {
         $metodos = [
             'get' => 'index',
@@ -35,7 +35,17 @@ class Router
             'delete' => 'deletar'
         ];
 
+        /** Add */
+        $httpVerbos = array_keys($metodos);
+
+        $metodos = array_merge($metodos, $metodosCustom);
+        /** Add */
+
         foreach ($metodos as $httpVerbo => $metodo) {
+            /** Add */
+            if (!in_array($httpVerbo, $httpVerbos)) throw new \Exception("Método {$httpVerbo} (use: get, post, put, delete) Inválido no Router");
+            /** Add */
+
             self::{$httpVerbo}($uri, "$controller@$metodo");
         }
     }

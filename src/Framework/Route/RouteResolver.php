@@ -49,10 +49,10 @@ class RouteResolver
 
         if (!class_exists($controller)) throw new Exception("Controller {$controller} Inválido!");
 
-        $controller = (new Container())->get($controller);
+        $controllerInstancia = (new Container())->get($controller);
 
-        if (!method_exists($controller, $metodo)) throw new Exception("Método {$metodo} do controller {$controller} Inválido!");
+        if (!method_exists($controllerInstancia, $metodo)) throw new Exception("Método {$metodo} do controller {$controller} Inválido!");
 
-        return call_user_func_array([$controller, $metodo], [$param]);
+        return call_user_func_array([$controllerInstancia, $metodo], [$param]);
     }
 }

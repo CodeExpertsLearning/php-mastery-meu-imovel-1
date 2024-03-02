@@ -1,4 +1,4 @@
-GET http://localhost:3030/imoveis/13
+GET http://localhost:3030/imoveis
 Content-Type: application/json
 
 {
