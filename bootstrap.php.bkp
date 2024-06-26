@@ -4,3 +4,16 @@ require __DIR__ . '/vendor/autoload.php';
 define('HOME_URL', '');
 
 define('TEMPLATES_PATH', __DIR__ . '/templates');
+
+
+//Banco de Dados Acesso
+define('DB_TIPO', '');
+define('DB_NOME', '');
+define('DB_USUARIO', '');
+define('DB_SENHA', '');
+define('DB_HOST', '');
+define('DB_CHARSET', 'utf8mb4');
+define('DB_COLLATE', 'utf8mb4_unicode_ci');
+
+//Upload
+define('PASTA_UPLOADS', '');

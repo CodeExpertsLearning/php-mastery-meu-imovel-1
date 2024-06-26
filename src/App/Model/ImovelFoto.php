@@ -4,7 +4,7 @@ namespace Code\App\Model;
 
 use Code\Framework\Database\Model\Model;
 
-class Usuario extends Model
+class ImovelFoto extends Model
 {
-    protected $table = 'usuarios';
+    protected $table = 'imovel_fotos';
 }

@@ -54,6 +54,47 @@ class Database
             : $select->fetchAll(\PDO::FETCH_OBJ);
     }
 
+    public function selectCustom(?array $filtros = [], ?string $colunas = '*', ?array $ordernacao = [], bool $linha = false): array|object|bool
+    {
+        $query = 'SELECT ' . $colunas . ' FROM ' . $this->tabela;
+
+
+        $clausulas = '';
+
+        foreach ($filtros as $filtro) {
+            $clausulas .= $clausulas ? ' AND ' . $filtro[0] . ' ' . $filtro[1] . ' :' . $filtro[0]
+                : $filtro[0] . ' ' . $filtro[1] . ' :' . $filtro[0];
+        }
+
+        if ($clausulas)
+            $query .= ' WHERE ' . $clausulas;
+
+
+        $ordenarPor = '';
+
+        foreach ($ordernacao as $ordenar) {
+            $ordenarPor .= $ordenarPor ? ', ' . $ordenar[0] . ' ' . $ordenar[1]
+                : $ordenar[0] . ' ' . $ordenar[1];
+        }
+
+        if ($ordenarPor)
+            $query .= ' ORDER BY ' . $ordenarPor;
+
+        $select = $this->conexao->prepare($query);
+
+        foreach ($filtros as $valor) {
+            $select->bindValue(':' . $valor[0], $valor[2], is_integer($valor[2])
+                ? \PDO::PARAM_INT
+                : \PDO::PARAM_STR);
+        }
+
+        $select->execute();
+
+        return $linha
+            ? $select->fetch(\PDO::FETCH_OBJ)
+            : $select->fetchAll(\PDO::FETCH_OBJ);
+    }
+
     public function inserir(array $dados): int
     {
         $keys = array_keys($dados);

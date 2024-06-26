@@ -1,10 +1,14 @@
-GET http://localhost:3030/imoveis
+GET http://localhost:3030/buscar?filtros=price:>:10000&colunas=id,titulo,price&ordenacao=id:DESC
+
+###
+
+POST http://localhost:3030/imoveis
 Content-Type: application/json
 
 {
     "cidade_id": "1",
     "estado_id": "1",
-    "titulo": "Imovel 13 Editado",
+    "titulo": "Imovel 14 Editado",
     "descricao": "Meu imovel via post",
     "conteudo": "Meu imovel via post",
     "slug": "meu-imovel-via-post",
@@ -12,9 +16,49 @@ Content-Type: application/json
     "imovel_area": "20",
     "total_imovel_area": "20",
     "banheiros": "2",
-    "quartos": "3"
+    "quartos": "3",
+    "endereco": {
+        "endereco": "Rua Nova",
+        "bairro": "Sao Bernardo",
+        "numero": "28",
+        "cep": "65056541"      
+    }
 }
 
 ###
+GET http://localhost:3030/imoveis
 
-GET http://localhost:3030/imoveis/7
+###
+
+GET http://localhost:3030/imoveis/1
+
+
+###
+
+POST http://localhost:3030/imoveis-fotos-upload
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="imovel"
+
+1
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="fotos[]"; filename="imovel-1.jpg"
+Content-Type: image/jpg
+
+< ./data_imagens/imovel-1.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="fotos[]"; filename="imovel-2.jpg"
+Content-Type: image/jpg
+
+< ./data_imagens/imovel-2.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="fotos[]"; filename="imovel-3.jpg"
+Content-Type: image/jpg
+
+< ./data_imagens/imovel-3.jpg
+------WebKitFormBoundary7MA4YWxkTrZu0gW--

@@ -3,6 +3,7 @@
 namespace Code\App\Controller;
 
 use Code\App\Model\Imovel;
+use Code\App\Model\ImovelEndereco;
 use Code\Framework\HTTP\JsonResponse;
 
 class ImoveisController
@@ -50,6 +51,17 @@ class ImoveisController
         $imovel->quartos = $post->quartos;
 
         $imovel->salvar();
+
+        $endereco = new ImovelEndereco();
+        $endereco->imovel_id = $imovel->id;
+        $endereco->cidade_id = $post->cidade_id;
+        $endereco->estado_id = $post->estado_id;
+        $endereco->endereco = $post->endereco->endereco;
+        $endereco->bairro = $post->endereco->bairro;
+        $endereco->numero = $post->endereco->numero;
+        $endereco->cep = $post->endereco->cep;
+
+        $endereco->salvar();
 
         return new JsonResponse($imovel);
     }

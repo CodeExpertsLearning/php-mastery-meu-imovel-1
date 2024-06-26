@@ -3,20 +3,24 @@
 namespace Code\Framework\Route;
 
 use Code\Framework\Container\Container;
+use Code\Framework\HTTP\Request;
 use Exception;
 
 class RouteResolver
 {
+    private $request;
+
     public function __construct(private array $routeCollection)
     {
+        $this->request = Request::criarRequest();
     }
 
     public function resolve()
     {
-        $uri = trim($_SERVER['REQUEST_URI'], '/');
+        $uri = trim($this->request->uri(), '/');
         $uri = array_values(array_filter(explode('/', $uri)));
 
-        $method = $_SERVER['REQUEST_METHOD'];
+        $method = $this->request->server('REQUEST_METHOD');
 
         $rota = $this->filtrarRouteCollection($uri[0] ?? '/', $method);
 

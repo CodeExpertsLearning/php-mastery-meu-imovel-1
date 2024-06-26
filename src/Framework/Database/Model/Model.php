@@ -1,6 +1,6 @@
 <?php
 
-namespace Code\App\Model;
+namespace Code\Framework\Database\Model;
 
 use Code\Framework\Database\Database;
 use JsonSerializable; //php.net/JsonSerializable
@@ -70,7 +70,7 @@ class Model implements JsonSerializable
         return $this->atributos;
     }
 
-    protected function query(): Database
+    public function query(): Database
     {
         return new Database($this->table);
     }
