@@ -3,6 +3,7 @@
 namespace Code\Framework\Route;
 
 use Code\Framework\Container\Container;
+use Code\Framework\HTTP\Middleware\CorsMiddleware;
 use Code\Framework\HTTP\Request;
 use Exception;
 
@@ -17,12 +18,18 @@ class RouteResolver
 
     public function resolve()
     {
+        (new CorsMiddleware)->handle();
+
         $uri = trim($this->request->uri(), '/');
         $uri = array_values(array_filter(explode('/', $uri)));
 
         $method = $this->request->server('REQUEST_METHOD');
 
         $rota = $this->filtrarRouteCollection($uri[0] ?? '/', $method);
+
+        if ($rota['middlewares']) {
+            (new $rota['middlewares'][0])->handle();
+        }
 
         if (is_string($rota['callback'])) {
             $param = $uri[1] ??= null;

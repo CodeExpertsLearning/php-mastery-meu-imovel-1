@@ -1,9 +1,12 @@
 GET http://localhost:3030/buscar?filtros=price:>:10000&colunas=id,titulo,price&ordenacao=id:DESC
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjI2OTg3NDEsIm5iZiI6MTcyMjY5ODc0MSwiZXhwIjoxNzIyNzAyMzQxLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjMwMzAiLCJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjMwMzAiLCJ1aWQiOjJ9.iF4OVUD70EVzvezm2E0_GoMLT4eKvCsQr4A6JTvngNo
 
 ###
 
 POST http://localhost:3030/imoveis
 Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjI2OTg3NDEsIm5iZiI6MTcyMjY5ODc0MSwiZXhwIjoxNzIyNzAyMzQxLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjMwMzAiLCJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjMwMzAiLCJ1aWQiOjJ9.iF4OVUD70EVzvezm2E0_GoMLT4eKvCsQr4A6JTvngNo
+
 
 {
     "cidade_id": "1",
@@ -27,6 +30,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3030/imoveis
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjI2OTg3NDEsIm5iZiI6MTcyMjY5ODc0MSwiZXhwIjoxNzIyNzAyMzQxLCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjMwMzAiLCJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjMwMzAiLCJ1aWQiOjJ9.iF4OVUD70EVzvezm2E0_GoMLT4eKvCsQr4A6JTvngNo
 
 ###
 
@@ -62,3 +66,31 @@ Content-Type: image/jpg
 
 < ./data_imagens/imovel-3.jpg
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+
+###
+
+POST http://localhost:3030/cadastro
+Content-Type: application/json
+
+{
+    "nome" : "Cliente 2",  
+    "sobrenome" : "Teste",  
+    "email" : "teste2@email.com",  
+    "senha" : "12345678",  
+    "telefone" : "(98) 9999-9999",
+    "celular" : "(98) 9 9999-9999"
+}
+
+###
+POST http://localhost:3030/login
+Content-Type: application/json
+
+{
+    "email" : "teste@email.com",  
+    "senha" : "12345678"
+}
+
+###
+GET http://localhost:3030/validar-token
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MjI1NTU2MDQsIm5iZiI6MTcyMjU1NTYwNCwiZXhwIjoxNzIyNTU5MjA0LCJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjMwMzAiLCJhdWQiOiJodHRwOi8vMTI3LjAuMC4xOjMwMzAiLCJ1aWQiOjIyfQ.Vk9IorRvnnzyDzLYlBVHKp_rnlJox8Qm9tbhg9LpuJw

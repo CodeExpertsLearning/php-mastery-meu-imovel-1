@@ -2,6 +2,8 @@
 
 namespace Code\Framework\HTTP;
 
+use Exception;
+
 class Request
 {
     public function __construct(
@@ -32,6 +34,18 @@ class Request
         return $this->post;
     }
 
+    public function json($key = null)
+    {
+        if ($this->server('CONTENT_TYPE') !== 'application/json') throw new Exception("Content-Type Json Inválido!");
+
+        $post = json_decode(file_get_contents('php://input'), true);
+
+        if (isset($post[$key]))
+            return $post[$key];
+
+        return $post;
+    }
+
     public function file($key = null, $default = null)
     {
         $files = $_FILES;
@@ -43,12 +57,12 @@ class Request
     }
 
 
-    public function server($key = null)
+    public function server($key = null, $default = null)
     {
         if (isset($this->server[$key]))
             return $this->server[$key];
 
-        return $this->server;
+        return $default;
     }
 
     public function query($key = null)
